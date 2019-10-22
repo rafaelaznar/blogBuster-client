@@ -1,0 +1,18 @@
+/view/id?
+/plist/rpp?/page?
+/new
+/edit/id?
+/remove/id?
+
+
+
+/home (landing page)
+menu -> en todas las vistas
+
+
+
+
+
+
+
+/list (getall *)
