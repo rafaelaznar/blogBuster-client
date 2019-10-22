@@ -1,9 +1,9 @@
 var miControlador = miModulo.controller(
-    "sumaController",
+    "plistController",
     ['$scope', '$http', 'miServicio01', function ($scope, $http, myService) {
         $scope.resultado=null;
-        $scope.suma=function(){
-            $scope.resultado=myService.suma($scope.op1,$scope.op2);
+        $scope.multiplica=function(){
+            $scope.resultado=myService.multiplicacion($scope.op1,$scope.op2);
         }
     }]
 )
