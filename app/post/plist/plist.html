@@ -11,7 +11,8 @@
             </nav>
             <nav aria-label="Paginación">
                 <ul class="pagination">
-                    <li class="page-item" ng-class="{'active':(paginaActual==p)}" ng-disabled="p == '...'" ng-repeat="p in botonera track by $index">
+                    <li class="page-item" ng-class="{'active':(paginaActual==p)}" ng-disabled="p == '...'"
+                        ng-repeat="p in botonera track by $index">
                         <a class="page-link" ng-if="p != '...'" href="#!/post/plist/{{rppActual}}/{{p}}">{{p}}</a>
                         <span class="page-link" ng-if="p == '...'">{{p}}</span>
                     </li>
@@ -29,6 +30,11 @@
                     <td>{{fila.titulo}}</td>
                     <td>{{fila.cuerpo}}</td>
                     <td>{{fila.etiquetas}}</td>
+                    <td>
+                        <div class="my-2"><a class="btn btn-success btn-block" role="button" href="#!/post/view/{{fila.id}}">Ver</a></div>
+                        <div class="my-2"><a class="btn btn-warning btn-block" role="button" href="#!/post/edit/{{fila.id}}">Editar</a></div>
+                        <div class="my-2"><a class="btn btn-danger btn-block" role="button" href="#!/post/remove/{{fila.id}}">Eliminar</a></div>
+                    </td>
                 </tr>
             </table>
         </div>

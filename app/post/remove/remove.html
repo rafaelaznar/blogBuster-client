@@ -1,0 +1,48 @@
+<div class="container">
+    <h1 class="mb-4">Post que vas a eliminar:</h1>
+    <div ng-if="hecho">
+        <div class="alert alert-danger" role="alert" ng-if="fallido">No se ha podido borrar el post</div>
+        <div class="alert alert-success" role="alert" ng-if="!fallido">El post se ha borrado con exito</div>
+    </div>
+    <table class="table table-bordered table-hover" ng-if="!hecho">
+        <tr>
+            <th>
+                Titulo:
+            </th>
+            <td>
+                {{titulo}}
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Cuerpo:
+            </th>
+            <td>
+                {{cuerpo}}
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Etiquetas:
+            </th>
+            <td>
+                {{etiquetas}}
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Fecha:
+            </th>
+            <td>
+                {{fecha}}
+            </td>
+        </tr>
+    </table>
+    <div class="float-right">
+        <div class="my-3" ng-if="!hecho">¿Estas seguro?</div>
+        <div>
+            <button type="button" class="btn btn-danger" ng-click="eliminar()" ng-if="!hecho">Eliminar</button>
+            <button type="button" class="btn btn-outline-dark" ng-click="volver()">Volver</button>
+        </div>
+    </div>
+</div>

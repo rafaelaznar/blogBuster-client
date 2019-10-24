@@ -1,13 +1,13 @@
 var miControlador = miModulo.controller(
     "postPlistController",
-    ['$scope', '$http', 'miServicio01', '$routeParams', function ($scope, $http, myService, $routeParams) {
+    ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
         $scope.paginaActual = parseInt($routeParams.page);
         $scope.rppActual = parseInt($routeParams.rpp);
         $scope.rppS = [10,50,100];
 
 
         $http({
-            method: 'GET',
+            method: 'POST',
             url: 'http://localhost:8081/blogbuster/json?ob=post&op=getpage&rpp=' + $routeParams.rpp + '&page=' + $routeParams.page
         }).then(function (response) {
             $scope.status = response.data.status;
@@ -16,7 +16,7 @@ var miControlador = miModulo.controller(
         })
 
         $http({
-            method: 'GET',
+            method: 'POST',
             url: 'http://localhost:8081/blogbuster/json?ob=post&op=getcount'
         }).then(function (response) {
             $scope.status = response.data.status;
