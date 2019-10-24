@@ -3,19 +3,17 @@
         <div class="col">
             <h1>Listado de post</h1>
             <nav aria-label="Registros por página">
-                <ul class="pagination">
-                    <li class="page-item" ng-class="{'active':(rppActual==10)}"><a class="page-link"
-                            href="#!/post/plist/10/{{paginaActual}}">10</a></li>
-                    <li class="page-item" ng-class="{'active':(rppActual==50)}"><a class="page-link"
-                            href="#!/post/plist/50/{{paginaActual}}">50</a></li>
-                    <li class="page-item" ng-class="{'active':(rppActual==100)}"><a class="page-link"
-                            href="#!/post/plist/100/{{paginaActual}}">100</a></li>
+                <ul class="pagination float-right">
+                    <li class="page-item" ng-class="{'active':(rppActual==r)}" ng-repeat="r in rppS">
+                        <a class="page-link" href="#!/post/plist/{{r}}/{{calcPage[$index]}}">{{r}}</a>
+                    </li>
                 </ul>
             </nav>
             <nav aria-label="Paginación">
                 <ul class="pagination">
-                    <li class="page-item" ng-class="{'active':(paginaActual==p)}" ng-repeat="p in botonera">
-                        <a class="page-link" href="#!/post/plist/{{rppActual}}/{{p}}">{{p}}</a>
+                    <li class="page-item" ng-class="{'active':(paginaActual==p)}" ng-disabled="p == '...'" ng-repeat="p in botonera track by $index">
+                        <a class="page-link" ng-if="p != '...'" href="#!/post/plist/{{rppActual}}/{{p}}">{{p}}</a>
+                        <span class="page-link" ng-if="p == '...'">{{p}}</span>
                     </li>
                 </ul>
             </nav>
