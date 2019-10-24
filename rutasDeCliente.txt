@@ -1,8 +1,8 @@
-/view/id?
-/plist/rpp?/page?
-/new
-/edit/id?
-/remove/id?
+/ob/view/id?
+/ob/plist/rpp?/page?
+/ob/new
+/ob/edit/id?
+/ob/remove/id?
 
 
 
@@ -15,4 +15,4 @@ menu -> en todas las vistas
 
 
 
-/list (getall *)
+/ob/list (getall *)
