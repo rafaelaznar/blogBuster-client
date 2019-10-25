@@ -12,7 +12,8 @@ var miControlador = miModulo.controller(
             }
             $http({
                 method: 'POST',
-                url: `http://localhost:8081/blogbuster/json?ob=post&op=update&data={id:${$routeParams.id},titulo:${$scope.titulo},cuerpo:${$scope.cuerpo},etiquetas:${$scope.etiquetas}}`
+                data: datos,
+                url: `http://localhost:8081/blogbuster/json?ob=post&op=update`
             }).then(function (response) {
                 if (response.data.status == 500) {
                     $scope.fallido = true;
