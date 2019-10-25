@@ -1,0 +1,40 @@
+<div class="container">
+    <h1 class="mb-4">Post que querias ver:</h1>
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>
+                Titulo:
+            </th>
+            <td>
+                {{titulo}}
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Cuerpo:
+            </th>
+            <td>
+                {{cuerpo}}
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Etiquetas:
+            </th>
+            <td>
+                {{etiquetas}}
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Fecha:
+            </th>
+            <td>
+                {{fecha}}
+            </td>
+        </tr>
+    </table>
+    <div class="float-right">
+        <button type="button" class="btn btn-outline-dark" ng-click="volver()">Volver</button>
+    </div>
+</div>

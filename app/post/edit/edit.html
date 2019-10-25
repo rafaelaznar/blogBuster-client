@@ -1,0 +1,49 @@
+<div class="container">
+    <h1 class="mb-4">Post que vas a eliminar:</h1>
+    <div ng-if="hecho">
+        <div class="alert alert-danger" role="alert" ng-if="fallido">No se ha podido editar el post</div>
+        <div class="alert alert-success" role="alert" ng-if="!fallido">El post se ha editado con exito</div>
+    </div>
+    <table class="table table-bordered table-hover" ng-if="!hecho">
+        <tr>
+            <th>
+                Titulo:
+            </th>
+            <td>
+                <input class="form-control" type="text" value="{{titulo}}">
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Cuerpo:
+            </th>
+            <td>
+                <textarea class="form-control" rows="10">{{cuerpo}}</textarea>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Etiquetas:
+            </th>
+            <td>
+                    <input class="form-control" type="text" value="{{etiquetas}}">
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Fecha:
+            </th>
+            <td>
+                    <input class="form-control" type="text" value="{{fecha}}">
+            </td>
+        </tr>
+    </table>
+    <div class="float-right">
+        <div class="my-3" ng-if="!hecho">¿Estas seguro?</div>
+        <div>
+            <button type="button" class="btn btn-danger" ng-click="editar()" ng-if="!hecho">Guardar</button>
+            <button type="button" class="btn btn-outline-warning" ng-click="reset()" ng-if="!hecho">Descartar</button>
+            <button type="button" class="btn btn-outline-dark" ng-click="volver()">Volver</button>
+        </div>
+    </div>
+</div>
