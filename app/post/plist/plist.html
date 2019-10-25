@@ -4,33 +4,16 @@
       <h1>Listado de post</h1>
       <nav aria-label="Registros por página">
         <ul class="pagination float-right">
-          <li
-            class="page-item"
-            ng-class="{'active':(rppActual==r)}"
-            ng-repeat="r in rppS"
-          >
-            <a
-              class="page-link"
-              href="#!/post/plist/{{ r }}/{{ calcPage[$index] }}"
-              >{{ r }}</a
-            >
+          <li class="page-item" ng-class="{'active':(rppActual==r)}" ng-repeat="r in rppS">
+            <a class="page-link" href="#!/post/plist/{{ r }}/{{ calcPage[$index] }}">{{ r }}</a>
           </li>
         </ul>
       </nav>
       <nav aria-label="Paginación">
         <ul class="pagination">
-          <li
-            class="page-item"
-            ng-class="{'active':(paginaActual==p)}"
-            ng-disabled="p == '...'"
-            ng-repeat="p in botonera track by $index"
-          >
-            <a
-              class="page-link"
-              ng-if="p != '...'"
-              href="#!/post/plist/{{ rppActual }}/{{ p }}"
-              >{{ p }}</a
-            >
+          <li class="page-item" ng-class="{'active':(paginaActual==p)}" ng-disabled="p == '...'"
+            ng-repeat="p in botonera track by $index">
+            <a class="page-link" ng-if="p != '...'" href="#!/post/plist/{{ rppActual }}/{{ p }}">{{ p }}</a>
             <span class="page-link" ng-if="p == '...'">{{ p }}</span>
           </li>
         </ul>
@@ -48,29 +31,10 @@
           <td>{{ fila.cuerpo }}</td>
           <td>{{ fila.etiquetas }}</td>
           <td>
-            <div class="my-2">
-              <a
-                class="btn btn-success btn-block"
-                role="button"
-                href="#!/post/view/{{ fila.id }}"
-                >Ver</a
-              >
-            </div>
-            <div class="my-2">
-              <a
-                class="btn btn-warning btn-block"
-                role="button"
-                href="#!/post/edit/{{ fila.id }}"
-                >Editar</a
-              >
-            </div>
-            <div class="my-2">
-              <a
-                class="btn btn-danger btn-block"
-                role="button"
-                href="#!/post/remove/{{ fila.id }}"
-                >Eliminar</a
-              >
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <a class="btn btn-secondary" href="#!/post/view/{{ fila.id }}"><i class="fas fa-eye"></i></a>
+              <a class="btn btn-secondary" href="#!/post/edit/{{ fila.id }}"><i class="fas fa-edit"></i></a>
+              <a class="btn btn-secondary" href="#!/post/edit/{{ fila.id }}"><i class="fas fa-trash-alt"></i></a>
             </div>
           </td>
         </tr>
@@ -78,18 +42,10 @@
 
       <nav aria-label="Paginación">
         <ul class="pagination">
-          <li
-            class="page-item"
-            ng-class="{'active':(paginaActual==p)}"
-            ng-disabled="p == '...'"
-            ng-repeat="p in botonera track by $index"
-          >
-            <a
-              class="page-link"
-              ng-if="p != '...'"
-              href="#!/post/plist/{{ rppActual }}/{{ p }}"
-              >{{ p }}</a
-            >
+          <li class="page-item" ng-class="{'active':(paginaActual==p)}" ng-disabled="p == '...'"
+            ng-repeat="p in botonera track by $index">
+            <a class="page-link" ng-if="p != '...'" href="#!/post/plist/{{ rppActual }}/{{ p }}">{{ p }}
+            </a>
             <span class="page-link" ng-if="p == '...'">{{ p }}</span>
           </li>
         </ul>
