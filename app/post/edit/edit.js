@@ -10,16 +10,15 @@ var miControlador = miModulo.controller(
                 cuerpo: $scope.cuerpo,
                 etiquetas: $scope.etiquetas
             }
-            $http({
-                method: 'POST',
-                data: datos,
-                url: `http://localhost:8081/blogbuster/json?ob=post&op=update`
-            }).then(function (response) {
+            var jsonToSend = {data: JSON.stringify(datos)};
+            $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
+            $http.get('http://localhost:8081/blogbuster/json?ob=post&op=update', {params: jsonToSend})
+            .then(function (response) {
                 if (response.data.status == 500) {
                     $scope.fallido = true;
                 }
                 $scope.hecho = true;
-            }, function () {
+            }, function (error) {
                 $scope.fallido = true;
                 $scope.hecho = true;
             });

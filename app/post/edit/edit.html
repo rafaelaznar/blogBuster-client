@@ -1,40 +1,32 @@
 <div class="container">
-    <h1 class="mb-4">Edición de Post</h1>
+    <h1 class="mb-4">Edición de post</h1>
     <div ng-if="hecho">
         <div class="alert alert-danger" role="alert" ng-if="fallido">No se ha podido editar el post</div>
         <div class="alert alert-success" role="alert" ng-if="!fallido">El post se ha editado con exito</div>
     </div>
     <table class="table table-bordered table-hover" ng-if="!hecho">
         <tr>
-            <th>
-                Titulo:
-            </th>
+            <th> Título: </th>
             <td>
                 <input class="form-control" type="text" value="{{titulo}}">
             </td>
         </tr>
         <tr>
-            <th>
-                Cuerpo:
-            </th>
+            <th> Cuerpo: </th>
             <td>
                 <textarea class="form-control" rows="10">{{cuerpo}}</textarea>
             </td>
         </tr>
         <tr>
-            <th>
-                Etiquetas:
-            </th>
+            <th> Etiquetas: </th>
             <td>
-                    <input class="form-control" type="text" value="{{etiquetas}}">
+                <input class="form-control" type="text" value="{{etiquetas}}">
             </td>
         </tr>
         <tr>
-            <th>
-                Fecha:
-            </th>
+            <th> Fecha: </th>
             <td>
-                    <input class="form-control" type="text" value="{{fecha}}">
+                <input class="form-control" type="text" value="{{fecha}}">
             </td>
         </tr>
     </table>
