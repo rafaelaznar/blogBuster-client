@@ -1,7 +1,7 @@
 var miControlador = miModulo.controller(
     "postNewController",
     ['$scope', '$http', '$routeParams', '$window', function ($scope, $http, $routeParams, $window) {
-        $scope.controller = "new";
+        $scope.controller = "postNewController";
 
         $scope.anyadir = function () {
             $http({

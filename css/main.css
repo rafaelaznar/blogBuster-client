@@ -1,0 +1,19 @@
+.container {
+    padding: 20px 15px 80px;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 70px;
+    line-height: 0px;
+    /* Vertically center the text there */
+    background-color: #f5f5f5;
+}
+
+.footer>.container {
+    padding-right: 15px;
+    padding-left: 15px;
+}

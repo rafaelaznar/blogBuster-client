@@ -1,7 +1,7 @@
 var miControlador = miModulo.controller(
     "postViewController",
     ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
-        
+        $scope.controller = "postViewController";
 
         $scope.volver = function(){
             window.history.back();

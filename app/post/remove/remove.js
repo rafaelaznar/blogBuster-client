@@ -1,6 +1,7 @@
 var miControlador = miModulo.controller(
     "postRemoveController",
     ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
+        $scope.controller = "postRemoveController";
         $scope.hecho = false;
         $scope.fallido = false;
         $scope.eliminar = function(){
