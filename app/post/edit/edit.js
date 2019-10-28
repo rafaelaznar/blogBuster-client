@@ -1,48 +1,29 @@
 var miControlador = miModulo.controller(
     "postEditController",
-    ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
-        $scope.hecho = false;
-        $scope.fallido = false;
-        $scope.editar = function () {
-            const datos = {
-                id: $routeParams.id,
-                titulo: $scope.titulo,
-                cuerpo: $scope.cuerpo,
-                etiquetas: $scope.etiquetas
-            }
-            var jsonToSend = {data: JSON.stringify(datos)};
-            $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
-            $http.get('http://localhost:8081/blogbuster/json?ob=post&op=update', {params: jsonToSend})
-            .then(function (response) {
-                if (response.data.status == 500) {
-                    $scope.fallido = true;
-                }
-                $scope.hecho = true;
-            }, function (error) {
-                $scope.fallido = true;
-                $scope.hecho = true;
-            });
-        };
+    ['$scope', '$http', '$routeParams', '$window', function ($scope, $http, $routeParams, $window) {
+        $scope.id = $routeParams.id;
 
-        $scope.volver = function () {
-            window.history.back();
-        };
+        $http({
+            method: "GET",
+            withCredentials: true,
+            url: "http://localhost:8081/blogbuster/json?ob=post&op=get&id=" + $scope.id
+        }).then(function (response) {
+            $scope.titulo = response.data.response.titulo;
+            $scope.cuerpo = response.data.response.cuerpo;
+            $scope.etiquetas = response.data.response.etiquetas;
+            $scope.fecha = response.data.response.fecha;
+        });
 
-        $scope.reset = function() {
+        $scope.modificar = function () {
             $http({
-                method: 'POST',
-                url: `http://localhost:8081/blogbuster/json?ob=post&op=get&id=${$routeParams.id}`
+                method: "POST",
+                data: "data={\"id\": " + $scope.id + ", \"titulo\": \"" + $scope.titulo + "\", \"cuerpo\": \"" + $scope.cuerpo + "\", \"etiquetas\": \"" + $scope.etiquetas + "\", \"fecha\": \"" + $scope.fecha + "\"}",
+                withCredentials: true,
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                url: "http://localhost:8081/blogbuster/json?ob=post&op=update"
             }).then(function (response) {
-                const respuesta = response.data.response;
-                $scope.titulo = respuesta.titulo;
-                $scope.cuerpo = respuesta.cuerpo;
-                $scope.etiquetas = respuesta.etiquetas;
-                $scope.fecha = respuesta.fecha;
-            }, function () {
-
+                $window.location.href = "/blogbuster/#!/post/plist/10/1";
             });
         }
-
-        $scope.reset();
     }]
-);
+)
