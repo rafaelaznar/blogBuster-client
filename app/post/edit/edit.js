@@ -1,7 +1,7 @@
 var miControlador = miModulo.controller(
     "postEditController",
-    ['$scope', '$http', '$routeParams', '$window', 'promesasService',
-        function ($scope, $http, $routeParams, $window, promesasService) {
+    ['$scope', '$http', '$routeParams', '$window', '$location', 'promesasService',
+        function ($scope, $http, $routeParams, $window, $location, promesasService) {
             $scope.id = $routeParams.id;
             $scope.controller = "postEditController";
             $scope.fallo = false;
@@ -45,10 +45,14 @@ var miControlador = miModulo.controller(
                     }, function (error) {
                         $scope.hecho = true;
                         $scope.fallo = true;
+                        $scope.falloMensaje = error.message + " " + error.stack;
                     });
             }
             $scope.volver = function () {
                 window.history.back();
+            };
+            $scope.cerrar = function () {
+                $location.path('/home');
             };
         }]
 

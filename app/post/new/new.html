@@ -1,60 +1,82 @@
 <ng-include src="'./app/menu.html'"></ng-include>
 <div class="container">
-  <div class="row">
-    <div class="col">
-      <h1>Crear un nuevo Post</h1>
-      <form name="userForm">
-        <div class="form-group row">
-          <label for="titulo" class="col-sm-2 col-form-label">Titulo:</label>
-          <div class="col-sm-10">
-            <input type="text" ng-model="titulo" class="form-control"
-              ng-class="{ 'is-invalid' : !userForm.titulo.$valid && !userForm.titulo.$pristine}" name="titulo"
-              ng-required="true" value="{{post.titulo}}" />
-            <div class="invalid-feedback" ng-show="userForm.titulo.$error.pattern">
-              El operando introducido es incorrecto, sólo debe llevar números
-            </div>
+  <div class="col">
+    <h1>Crear un Post</h1>
+    <form name="userForm" ng-show="!fallo&&!hecho">
+      <div class="form-group row">
+        <label for="titulo" class="col-sm-2 col-form-label">Titulo:</label>
+        <div class="col-sm-10">
+          <input type="text" ng-model="titulo" class="form-control"
+            ng-class="{ 'is-invalid' : !userForm.titulo.$valid && !userForm.titulo.$pristine}" name="titulo"
+            ng-required="true" value="{{post.titulo}}" />
+          <div class="invalid-feedback" ng-show="userForm.titulo.$error.pattern">
+            El operando introducido es incorrecto, sólo debe llevar números
           </div>
         </div>
-        <div class="form-group row">
-          <label for="cuerpo" class="col-sm-2 col-form-label">Cuerpo:</label>
-          <div class="col-sm-10">
-            <div class="form-group">
-              <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" ng-model="cuerpo"
-                class="form-control" ng-class="{ 'is-invalid' : !userForm.cuerpo.$valid && !userForm.cuerpo.$pristine}"
-                name="cuerpo" ng-required="true" value="{{post.cuerpo}}"></textarea>
-            </div>
-            <div class="invalid-feedback" ng-show="userForm.op1.$error.pattern">
-              El operando introducido es incorrecto, sólo debe llevar números
-            </div>
+      </div>
+      <div class="form-group row">
+        <label for="cuerpo" class="col-sm-2 col-form-label">Cuerpo:</label>
+        <div class="col-sm-10">
+          <div class="form-group">
+            <textarea class="form-control rounded-0" rows="10" id="exampleFormControlTextarea2" rows="3"
+              ng-model="cuerpo" class="form-control"
+              ng-class="{ 'is-invalid' : !userForm.cuerpo.$valid && !userForm.cuerpo.$pristine}" name="cuerpo"
+              ng-required="true" value="{{post.cuerpo}}"></textarea>
+          </div>
+          <div class="invalid-feedback" ng-show="userForm.op1.$error.pattern">
+            El operando introducido es incorrecto, sólo debe llevar números
           </div>
         </div>
-        <div class="form-group row">
-          <label for="etiquetas" class="col-sm-2 col-form-label">Etiquetas:</label>
-          <div class="col-sm-10">
-            <input type="text" ng-model="etiquetas" class="form-control"
-              ng-class="{ 'is-invalid' : !userForm.etiquetas.$valid && !userForm.etiquetas.$pristine}" name="etiquetas"
-              ng-required="true" value="{{post.etiquetas}}" />
-            <div class="invalid-feedback" ng-show="userForm.etiquetas.$error.pattern">
-              El operando introducido es incorrecto, sólo debe llevar números
-            </div>
+      </div>
+      <div class="form-group row">
+        <label for="etiquetas" class="col-sm-2 col-form-label">Etiquetas:</label>
+        <div class="col-sm-10">
+          <input type="text" ng-model="etiquetas" class="form-control"
+            ng-class="{ 'is-invalid' : !userForm.etiquetas.$valid && !userForm.etiquetas.$pristine}" name="etiquetas"
+            ng-required="true" value="{{post.etiquetas}}" />
+          <div class="invalid-feedback" ng-show="userForm.etiquetas.$error.pattern">
+            El operando introducido es incorrecto, sólo debe llevar números
           </div>
         </div>
-        <div class="form-group row">
-          <label for="fecha" class="col-sm-2 col-form-label">Fecha:</label>
-          <div class="col-sm-10">
-            <input type="text" ng-model="fecha" class="form-control"
-              ng-class="{ 'is-invalid' : !userForm.fecha.$valid && !userForm.fecha.$pristine}" name="fecha"
-              ng-required="true" value="{{post.fecha}}" />
-            <div class="invalid-feedback" ng-show="userForm.fecha.$error.pattern">
-              El operando introducido es incorrecto, sólo debe llevar números
-            </div>
+      </div>
+      <div class="form-group row">
+        <label for="fecha" class="col-sm-2 col-form-label">Fecha:</label>
+        <div class="col-sm-10">
+          <input type="text" ng-model="fecha" class="form-control"
+            ng-class="{ 'is-invalid' : !userForm.fecha.$valid && !userForm.fecha.$pristine}" name="fecha"
+            ng-required="true" value="{{post.fecha}}" />
+          <div class="invalid-feedback" ng-show="userForm.fecha.$error.pattern">
+            El operando introducido es incorrecto, sólo debe llevar números
           </div>
         </div>
-        <br>
-        <div class="row">
-          <button type="button" class="btn btn-primary" ng-click="anyadir()">Actualizar los datos</button>
-        </div>
-      </form>
+      </div>
+      <br>
+      <div class="row">
+        <button type="button" class="btn btn-primary" ng-click="modificar()">Actualizar los datos</button>
+      </div>
+    </form>
+    <div ng-show="!fallo&&hecho">
+      <div class="alert alert-success text-center" role="alert">
+        <h2>El Post se ha actualizado con éxito</h2>
+        <button class="btn btn-primary" ng-click="cerrar()">Cerrar</button>
+        <button class="btn btn-primary" ng-click="volver()">Volver</button>        
+      </div>
+    </div>
+    <div ng-show="fallo&&hecho">
+      <div class="alert alert-danger text-center" role="alert">
+        <h2>Ha ocurrido un error al actualizar el Post</h2>
+        <p ng-show="falloMensaje!=''">{{falloMensaje}}</p>
+        <button class="btn btn-primary" ng-click="cerrar()">Cerrar</button>
+        <button class="btn btn-primary" ng-click="volver()">Volver</button>        
+      </div>
+    </div>
+    <div ng-show="fallo&&!hecho">
+      <div class="alert alert-danger text-center" role="alert">
+        <h2>Ha habido un error al recibir datos del Post desde el servidor</h2>
+        <p ng-show="falloMensaje!=''">{{falloMensaje}}</p>
+        <button class="btn btn-primary" ng-click="cerrar()">Cerrar</button>
+        <button class="btn btn-primary" ng-click="volver()">Volver</button>        
+      </div>
     </div>
   </div>
 </div>
