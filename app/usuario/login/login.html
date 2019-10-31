@@ -1,0 +1,34 @@
+<ng-include src="'./app/menu.html'"></ng-include>
+
+<div class="form-center">
+    <div class="login-container">
+        <div class="login-top">
+            <img class="login-img" src="" alt="">
+            <h2 class="login-title">blog<span>Buster</span></h2>
+        </div>
+
+        <form name="userForm" class="login-form">
+
+            <input type="text" class="form-control" name="username" ng-model="user.username"
+                ng-class="{ 'is-invalid' : userForm.username.$invalid && !userForm.username.$pristine }" id="Usuario"
+                aria-describedby="Usuario" placeholder="&#128100; username" ng-required="true">
+
+            <div class="invalid-feedback" ng-show="userForm.username.$error.required">
+                El nombre de usuario está vacio. Por favor, revisa e inténtalo de nuevo.
+            </div>
+
+            <input type="password" class="form-control" name="password" ng-model="user.password"
+                ng-class="{ 'is-invalid' : userForm.password.$invalid && !userForm.password.$pristine }" id="Password"
+                placeholder="&#x1F512; password" ng-required="true">
+
+            <div class="invalid-feedback" ng-show="userForm.password.$error.required">
+                La contraseña está vacia. Por favor, revisa e inténtalo de nuevo.
+            </div>
+
+
+            <button type="submit" class="btn btn-primary">Entrar  <i class="fas fa-sign-in-alt"></i></button>
+        </form>
+    </div>
+</div>
+
+<ng-include src="'./app/footer.html'"></ng-include>

@@ -10,11 +10,11 @@ var miControlador = miModulo.controller(
 
             promesasService.ajaxGet('post', $scope.id)
                 .then(function (response) {
-                    $scope.id = response.data.response.id;
-                    $scope.titulo = response.data.response.titulo;
-                    $scope.cuerpo = response.data.response.cuerpo;
-                    $scope.etiquetas = response.data.response.etiquetas;
-                    $scope.fecha = response.data.response.fecha;
+                    $scope.id = response.data.message.id;
+                    $scope.titulo = response.data.message.titulo;
+                    $scope.cuerpo = response.data.message.cuerpo;
+                    $scope.etiquetas = response.data.message.etiquetas;
+                    $scope.fecha = response.data.message.fecha;
                 }, function (error) {
                     $scope.fallo = true;
                 });
@@ -37,7 +37,7 @@ var miControlador = miModulo.controller(
                     .then(function (response) {
                         if (response.data.status != 200) {
                             $scope.fallo = true;
-                            $scope.falloMensaje = response.data.response;
+                            $scope.falloMensaje = response.data.message;
                         } else {
                             $scope.fallo = false;
                         }

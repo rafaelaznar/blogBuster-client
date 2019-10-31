@@ -1,11 +1,12 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">BlogBuster</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
-    aria-expanded="false" aria-label="Toggle navigation">
+  <a class="navbar-brand" href="#!/home">BlogBuster</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
       <li class="nav-item" ng-class="{'active':(controller=='homeController')}">
         <a class="nav-link" href="#!/home/10/1">Home</a>
       </li>
@@ -16,5 +17,10 @@
         <a class="nav-link" href="#!/post/new">Nueva entrada</a>
       </li>
     </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <a class="nav-link" ng-class="{'active': sitio=='login'}" href="#!/login">Iniciar Sesión <i
+          class="fas fa-sign-in-alt"></i></a>
+      <a class="nav-link" ng-class="{'active': sitio=='logout'}" href="#!/logout">Cerrar Sesión <i
+          class="fas fa-sign-out-alt"></i></a> </form>
   </div>
 </nav>
