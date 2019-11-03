@@ -4,7 +4,6 @@
     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item" ng-class="{'active':(controller=='homeController')}">
@@ -17,10 +16,18 @@
         <a class="nav-link" href="#!/post/new">Nueva entrada</a>
       </li>
     </ul>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+      <ul class="navbar-nav align-self-end" id="nav">
+        <li class="nav-item">
+          <a class="nav-link" ng-class="{'active': sitio=='login'}" href="#!/login">Iniciar Sesión <i
+              class="fas fa-sign-in-alt"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" ng-class="{'active': sitio=='logout'}" href="#!/logout">Cerrar Sesión <i
+              class="fas fa-sign-out-alt"></i></a>
+        </li>
+      </ul>
+    </div>
     <form class="form-inline my-2 my-lg-0">
-      <a class="nav-link" ng-class="{'active': sitio=='login'}" href="#!/login">Iniciar Sesión <i
-          class="fas fa-sign-in-alt"></i></a>
-      <a class="nav-link" ng-class="{'active': sitio=='logout'}" href="#!/logout">Cerrar Sesión <i
-          class="fas fa-sign-out-alt"></i></a> </form>
   </div>
 </nav>
