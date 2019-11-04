@@ -3,34 +3,43 @@
   <div class="row">
     <div class="col">
       <h1>Listado de post</h1>
-      <nav aria-label="Registros por página">
-        <ul class="pagination float-right">
-          <li class="page-item" ng-class="{'active':(rppActual==r)}" ng-repeat="r in rppS">
-            <a class="page-link" href="#!/post/plist/{{ r }}/{{ calcPage[$index] }}">{{ r }}</a>
-          </li>
-        </ul>
-      </nav>
-      <nav aria-label="Paginación">
-        <ul class="pagination">
-          <li class="page-item" ng-class="{'active':(paginaActual==p)}" ng-disabled="p == '...'"
-            ng-repeat="p in botonera track by $index">
-            <a class="page-link" ng-if="p != '...'" href="#!/post/plist/{{ rppActual }}/{{ p }}">{{ p }}</a>
-            <span class="page-link" ng-if="p == '...'">{{ p }}</span>
-          </li>
-        </ul>
-      </nav>
+      <div class="row">
+        <div class="col">
+          <nav aria-label="Paginación">
+            <ul class="pagination">
+              <li class="page-item" ng-class="{'active':(paginaActual==p)}" ng-disabled="p == '...'"
+                ng-repeat="p in botonera track by $index">
+                <a class="page-link" ng-if="p != '...'" href="#!/post/plist/{{ rppActual }}/{{ p }}">{{ p }}</a>
+                <span class="page-link" ng-if="p == '...'">{{ p }}</span>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="col">
+          <nav aria-label="Registros por página">
+            <ul class="pagination float-right">
+              <li class="page-item" ng-class="{'active':(rppActual==r)}" ng-repeat="r in rppS">
+                <a class="page-link" href="#!/post/plist/{{ r }}/{{ calcPage[$index] }}">{{ r }}</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
       <table class="table">
         <tr>
           <th>Id</th>
           <th>Título</th>
           <th>Cuerpo</th>
           <th>Etiquetas</th>
+          <th>Fecha</th>
+          <th>Acciones</th>
         </tr>
         <tr ng-repeat="fila in pagina">
           <td>{{ fila.id }}</td>
           <td>{{ fila.titulo }}</td>
           <td>{{ fila.cuerpo }}</td>
           <td>{{ fila.etiquetas }}</td>
+          <td>{{ fila.fecha }}</td>
           <td>
             <div class="btn-group" role="group" aria-label="Basic example">
               <a class="btn btn-secondary" href="#!/post/view/{{ fila.id }}"><i class="fas fa-eye"></i></a>
