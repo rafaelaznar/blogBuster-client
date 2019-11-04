@@ -2,26 +2,30 @@ var miControlador = miModulo.controller(
     "homeController",
     ['$scope', '$http', 'auth', '$location', '$routeParams',
         function ($scope, $http, auth, $location, $routeParams) {
-            if (auth.data.status != 200) {
-                $location.path('/login');
-            }
             $scope.authStatus = auth.data.status;
             $scope.authUsername = auth.data.message;
 
             $scope.controller = "homeController";
 
-            $scope.paginaActual = parseInt($routeParams.page);
-            $scope.rppActual = parseInt($routeParams.rpp);
-            $scope.rppS = [10, 50, 100];
+            if (!$routeParams.page) {
+                $scope.paginaActual = 1;
+            } else {
+                $scope.paginaActual = parseInt($routeParams.page);
+            }
+            if (!$routeParams.rpp) {
+                $scope.rppActual = 10;
+            } else {
+                $scope.rppActual = parseInt($routeParams.rpp);
+            }
             $scope.controller = "postPlistController";
 
             $http({
                 method: 'GET',
-                url: 'http://localhost:8081/blogbuster/json?ob=post&op=getpage&rpp=' + $routeParams.rpp + '&page=' + $routeParams.page
+                url: 'http://localhost:8081/blogbuster/json?ob=post&op=getpage&rpp=' + $scope.rppActual + '&page=' + $scope.paginaActual
             }).then(function (response) {
                 $scope.status = response.data.status;
                 $scope.pagina = response.data.message;
-            }, function () { })
+            }, function () {})
 
             $http({
                 method: 'GET',
@@ -29,15 +33,10 @@ var miControlador = miModulo.controller(
             }).then(function (response) {
                 $scope.status = response.data.status;
                 $scope.numRegistros = response.data.message;
-                $scope.numPaginas = Math.ceil($scope.numRegistros / $routeParams.rpp);
+                $scope.numPaginas = Math.ceil($scope.numRegistros / $scope.rppActual);
                 $scope.calcPage = [];
-                for (const p of $scope.rppS) {
-                    const res = $scope.paginaActual / $scope.numPaginas;
-                    const next = Math.ceil($scope.numRegistros / p);
-                    $scope.calcPage.push(Math.round(res * next));
-                }
                 paginacion(2);
-            }, function () { })
+            }, function () {})
 
             function paginacion(vecindad) {
                 vecindad++;

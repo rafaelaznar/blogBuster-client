@@ -5,14 +5,11 @@
       <h1>BLOGBUSTER: el blog de DAW</h1>
     </div>
   </div>
-</div>
 
-<div class="container">
   <div class="row">
     <div class="col-md-12">
       <div class="card-deck mt-4" ng-repeat="post in pagina">
         <div class="card">
-
           <div class="card-header">
             <h3>
               <a href="#!/post/view/{{post.id}}">
@@ -30,24 +27,21 @@
       </div>
     </div>
   </div>
-</div>
-<div class="container">
+  <br>
   <div class="row">
-    <div class="col">
-      <nav aria-label="Paginación">
-        <ul class="pagination">
-          <li class="page-item" ng-class="{'active':(paginaActual==p)}" ng-disabled="p == '...'"
-            ng-repeat="p in botonera track by $index">
-            <a class="page-link" ng-if="p != '...'" href="#!/post/plist/{{ rppActual }}/{{ p }}">{{ p }}</a>
-            <span class="page-link" ng-if="p == '...'">{{ p }}</span>
-          </li>
-        </ul>
-      </nav>
+    <div class="col-md-12 ">
+      <div class="btn-toolbar">
+        <nav aria-label="Paginación">
+          <ul class="pagination">
+            <li class="page-item" ng-class="{'active':(paginaActual==p)}" ng-disabled="p == '...'"
+              ng-repeat="p in botonera track by $index">
+              <a class="page-link" ng-if="p != '...'" href="#!/home/{{ rppActual }}/{{ p }}">{{ p }}</a>
+              <span class="page-link" ng-if="p == '...'">{{ p }}</span>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </div>
   </div>
-
 </div>
-
-
-
 <ng-include src="'./app/footer.html'"></ng-include>
