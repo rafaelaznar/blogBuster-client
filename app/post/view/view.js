@@ -1,23 +1,34 @@
 var miControlador = miModulo.controller(
     "postViewController",
-    ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
-        $scope.controller = "postViewController";
+    ['$scope', '$http', '$routeParams', 'auth', 'promesasService',
 
-        $scope.volver = function(){
-            window.history.back();
-        };
+        function ($scope, $http, $routeParams, auth, promesasService) {
+            $scope.authStatus = auth.data.status;
+            $scope.authUsername = auth.data.message;
+            //--
+            $scope.controller = "postViewController";
+            //--
+            $scope.id = $routeParams.id;
+            //--
+            $scope.fallo = false;
+            $scope.hecho = false;
+            $scope.falloMensaje = "";
+            //--
+            promesasService.ajaxGet('post', $scope.id).then(function (response) {
+                $scope.id = response.data.message.id;
+                $scope.titulo = response.data.message.titulo;
+                $scope.cuerpo = response.data.message.cuerpo;
+                $scope.etiquetas = response.data.message.etiquetas;
+                $scope.fecha = response.data.message.fecha;
+            }, function () {
+                $scope.fallo = true;
+                $scope.falloMensaje = "No se ha podido acceder a los datos del servidor";
+            });
+            //--
+            $scope.volver = function () {
+                window.history.back();
+            };
 
-        $http({
-            method: 'POST',
-            url: `http://localhost:8081/blogbuster/json?ob=post&op=get&id=${$routeParams.id}`
-        }).then(function(response){
-            const respuesta = response.data.message;
-            $scope.titulo = respuesta.titulo;
-            $scope.cuerpo = respuesta.cuerpo;
-            $scope.etiquetas = respuesta.etiquetas;
-            $scope.fecha = respuesta.fecha;
-        }, function(){
-
-        });
-    }]
+        }
+    ]
 );

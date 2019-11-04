@@ -1,13 +1,21 @@
 var miControlador = miModulo.controller(
     "postEditController",
-    ['$scope', '$http', '$routeParams', '$window', '$location', 'promesasService',
-        function ($scope, $http, $routeParams, $window, $location, promesasService) {
+    ['$scope', '$http', '$routeParams', '$window', '$location', 'promesasService', 'auth',
+        function ($scope, $http, $routeParams, $window, $location, promesasService, auth) {
+            $scope.authStatus = auth.data.status;
+            $scope.authUsername = auth.data.message;
+            if ($scope.authStatus != 200) {
+                $location.path('/login');
+            }
+            //--
             $scope.id = $routeParams.id;
+            //--
             $scope.controller = "postEditController";
+            //--
             $scope.fallo = false;
             $scope.hecho = false;
             $scope.falloMensaje = "";
-
+            //--
             promesasService.ajaxGet('post', $scope.id)
                 .then(function (response) {
                     $scope.id = response.data.message.id;
@@ -32,8 +40,8 @@ var miControlador = miModulo.controller(
                 };
                 $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
                 $http.get('http://localhost:8081/blogbuster/json?ob=post&op=update', {
-                    params: jsonToSend
-                })
+                        params: jsonToSend
+                    })
                     .then(function (response) {
                         if (response.data.status != 200) {
                             $scope.fallo = true;
@@ -54,6 +62,7 @@ var miControlador = miModulo.controller(
             $scope.cerrar = function () {
                 $location.path('/home');
             };
-        }]
+        }
+    ]
 
 )

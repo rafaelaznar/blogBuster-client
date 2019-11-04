@@ -1,13 +1,19 @@
 var miControlador = miModulo.controller(
     "postNewController",
-    ['$scope', '$http', '$routeParams', '$window', 'promesasService',
-        function ($scope, $http, $routeParams, $window, promesasService) {
+    ['$scope', '$http', '$routeParams', '$window', 'promesasService', 'auth', '$location',
+        function ($scope, $http, $routeParams, $window, promesasService, auth, $location) {
+            $scope.authStatus = auth.data.status;
+            $scope.authUsername = auth.data.message;
+            if ($scope.authStatus != 200) {
+                $location.path('/login');
+            }
+            //--
             $scope.id = $routeParams.id;
             $scope.controller = "postNewController";
             $scope.fallo = false;
             $scope.hecho = false;
             $scope.falloMensaje = "";
-
+            //--
             $scope.modificar = function () {
                 const datos = {
                     id: $routeParams.id,
@@ -20,9 +26,9 @@ var miControlador = miModulo.controller(
                     data: JSON.stringify(datos)
                 };
                 $http.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
-                $http.get('http://localhost:8081/blogbuster/json?ob=post&op=new', {
-                    params: jsonToSend
-                })
+                $http.get('http://localhost:8081/blogbuster/json?ob=post&op=insert', {
+                        params: jsonToSend
+                    })
                     .then(function (response) {
                         if (response.data.status != 200) {
                             $scope.fallo = true;
@@ -43,6 +49,7 @@ var miControlador = miModulo.controller(
             $scope.cerrar = function () {
                 $location.path('/home');
             };
-        }]
+        }
+    ]
 
 )

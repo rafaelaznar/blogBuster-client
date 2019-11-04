@@ -1,46 +1,50 @@
 <ng-include src="'./app/menu.html'"></ng-include>
 
-<div class="container py-5">
-    <div class="row">
-        <div class="col-md-12">
-            <h2 class="text-center text-white mb-4"></h2>
-            <div class="row">
-                <div class="col-md-6 mx-auto">
-                    <div class="card rounded-5">
-                        <div class="card-header">
-                            <h4 class="mb-0">Formulario de entrada al sistema</h4>
+<div class="container-fluid py-5">
+    <div class="row align-items-center">
+        <div class="colmd-5 mx-auto">
+            <div class="card rounded-5" ng-show="!fallo">
+                <div class="card-header">
+                    <h4 class="mb-0">Formulario de entrada al sistema</h4>
+                </div>
+                <div class="card-body">
+                    <form name="userForm" class="login-form" autocomplete="off">
+                        <div class="form-group">
+                            <label for="username">Nombre de usuario:</label>
+                            <input type="text" class="form-control" name="username" ng-model="username"
+                                ng-class="{ 'is-invalid' : userForm.username.$invalid && !userForm.username.$pristine }"
+                                id="Usuario" aria-describedby="Usuario" placeholder="username" ng-required="true">
+                            <div class="invalid-feedback" ng-show="userForm.username.$error.required">
+                                El nombre de usuario está vacio. Por favor, revisa e inténtalo de nuevo.
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <form name="userForm" class="login-form" autocomplete="off">
-                                <div class="form-group">
-                                    <label for="username">Nombre de usuario:</label>
-                                    <input type="text" class="form-control" name="username" ng-model="user.username"
-                                        ng-class="{ 'is-invalid' : userForm.username.$invalid && !userForm.username.$pristine }"
-                                        id="Usuario" aria-describedby="Usuario" placeholder="&#128100; username"
-                                        ng-required="true">
-                                    <div class="invalid-feedback" ng-show="userForm.username.$error.required">
-                                        El nombre de usuario está vacio. Por favor, revisa e inténtalo de nuevo.
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="password">Password:</label>
-                                    <input type="password" class="form-control" name="password" ng-model="user.password"
-                                        ng-class="{ 'is-invalid' : userForm.password.$invalid && !userForm.password.$pristine }"
-                                        id="Password" placeholder="&#x1F512; password" ng-required="true">
-
-                                    <div class="invalid-feedback" ng-show="userForm.password.$error.required">
-                                        La contraseña está vacia. Por favor, revisa e inténtalo de nuevo.
-                                    </div>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Entrar <i
-                                        class="fas fa-sign-in-alt"></i></button>
-                            </form>
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="password" class="form-control" name="password" ng-model="password"
+                                ng-class="{ 'is-invalid' : userForm.password.$invalid && !userForm.password.$pristine }"
+                                id="Password" placeholder="password" ng-required="true">
+                            <div class="invalid-feedback" ng-show="userForm.password.$error.required">
+                                La contraseña está vacia. Por favor, revisa e inténtalo de nuevo.
+                            </div>
                         </div>
+                        <button type="submit" ng-click="login()" class="btn btn-primary">Entrar <i class="fas fa-sign-in-alt"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="card rounded-5" ng-show="fallo">
+                <div class="card-header">
+                    <h4 class="mb-0">Error de entrada al sistema</h4>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-danger text-center" role="alert">
+                        Error: {{falloMensaje}}
                     </div>
+                    <button ng-click="volver()" class="btn btn-primary">Volver <i class="fas fa-backward"></i></button>
                 </div>
             </div>
         </div>
     </div>
+
 </div>
 
 <ng-include src="'./app/footer.html'"></ng-include>

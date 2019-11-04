@@ -18,11 +18,14 @@
     </ul>
     <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
       <ul class="navbar-nav align-self-end" id="nav">
-        <li class="nav-item">
+        <li class="nav-item" ng-show="authStatus!=200">
           <a class="nav-link" ng-class="{'active': sitio=='login'}" href="#!/login">Iniciar Sesión <i
               class="fas fa-sign-in-alt"></i></a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" ng-show="authStatus==200">
+          <span class="nav-link">Usuario: {{authUsername}}</span>
+        </li>
+        <li class="nav-item" ng-show="authStatus==200">
           <a class="nav-link" ng-class="{'active': sitio=='logout'}" href="#!/logout">Cerrar Sesión <i
               class="fas fa-sign-out-alt"></i></a>
         </li>

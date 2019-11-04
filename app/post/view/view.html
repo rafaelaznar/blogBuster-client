@@ -1,9 +1,17 @@
 <ng-include src="'./app/menu.html'"></ng-include>
 <div class="container">
-    <h1 class="mb-4">Vista de post</h1>
-    <table class="table table-bordered table-hover">
+    <h1 class="md-4">Vista de post</h1>
+    <table class="table table-bordered table-hover" ng-show="!fallo">
         <tr>
-            <th> Titulo: </th>
+            <th> Campo </th>
+            <th> Valor </th>
+        </tr>
+        <tr>
+            <td> Id: </td>
+            <td> {{id}} </td>
+        </tr>
+        <tr>
+            <td> Titulo: </td>
             <td> {{titulo}} </td>
         </tr>
         <tr>
