@@ -35,6 +35,7 @@ var miControlador = miModulo.controller(
                 url: `http://localhost:8081/blogbuster/json?ob=post&op=get&id=${$routeParams.id}`
             }).then(function (response) {
                 const respuesta = response.data.message;
+                $scope.id = respuesta.id;
                 $scope.titulo = respuesta.titulo;
                 $scope.cuerpo = respuesta.cuerpo;
                 $scope.etiquetas = respuesta.etiquetas;

@@ -82,6 +82,15 @@ miModulo.config(['$routeProvider',
                 }
             }
         });
+        $routeProvider.when('/post/fill', {
+            templateUrl: 'app/post/fill/fill.html',
+            controller: 'postFillController',
+            resolve: {
+                auth: function (promesasService) {
+                    return promesasService.ajaxCheck();
+                }
+            }
+        });
         $routeProvider.otherwise({
             redirectTo: '/'
         })

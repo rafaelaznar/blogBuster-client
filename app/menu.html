@@ -6,14 +6,14 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item" ng-class="{'active':(controller=='homeController')}">
-        <a class="nav-link" href="#!/home/10/1">Home</a>
-      </li>
-      <li class="nav-item" ng-class="{'active':(controller=='postPlistController')}">
+      <li class="nav-item" ng-show="authStatus==200" ng-class="{'active':(controller=='postPlistController')}">
         <a class="nav-link" href="#!/post/plist/10/1">Listado de posts</a>
       </li>
-      <li class="nav-item" ng-class="{'active':(controller=='postNewController')}">
-        <a class="nav-link" href="#!/post/new">Nueva entrada</a>
+      <li class="nav-item" ng-show="authStatus==200" ng-class="{'active':(controller=='postNewController')}">
+        <a class="nav-link" href="#!/post/new">Nuevo post</a>
+      </li>
+      <li class="nav-item" ng-show="authStatus==200" ng-class="{'active':(controller=='postFillController')}">
+        <a class="nav-link" href="#!/post/fill">Creación masiva aleatoria de posts</a>
       </li>
     </ul>
     <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">

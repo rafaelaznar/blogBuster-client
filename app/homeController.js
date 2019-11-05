@@ -17,7 +17,7 @@ var miControlador = miModulo.controller(
             } else {
                 $scope.rppActual = parseInt($routeParams.rpp);
             }
-            $scope.controller = "postPlistController";
+            $scope.controller = "postHomeController";
 
             $http({
                 method: 'GET',

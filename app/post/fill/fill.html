@@ -1,0 +1,27 @@
+<ng-include src="'./app/menu.html'"></ng-include>
+<div class="container">
+    <div class="row align-items-center">
+        <div class="colmd-5 mx-auto">
+            <div class="card rounded-5">
+                <div class="card-header">
+                    <h4 class="mb-0">Creación masiva de posts</h4>
+                </div>
+                <div class="card-body" ng-show="!hecho">
+                    <button type="button" class="btn btn-primary" ng-click="crear(10)">Crear 10 posts</button>
+                    <button type="button" class="btn btn-primary" ng-click="crear(50)">Crear 50 posts</button>
+                    <button type="button" class="btn btn-primary" ng-click="crear(100)">Crear 100 posts</button>
+                </div>
+                <div class="card-body" ng-show="hecho">
+                    <h2>{{mensaje}}</h2>
+                </div>
+                <div class="card-footer text-muted">
+                    <div class="float-right">
+                        <button class="btn btn-primary" ng-click="cerrar()">Cerrar</button>
+                        <button type="button" class="btn btn-outline-dark" ng-click="volver()">Volver</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-include src="'./app/footer.html'"></ng-include>

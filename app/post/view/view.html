@@ -1,35 +1,39 @@
 <ng-include src="'./app/menu.html'"></ng-include>
 <div class="container">
-    <h1 class="md-4">Vista de post</h1>
-    <table class="table table-bordered table-hover" ng-show="!fallo">
-        <tr>
-            <th> Campo </th>
-            <th> Valor </th>
-        </tr>
-        <tr>
-            <th> Id: </th>
-            <td> {{id}} </td>
-        </tr>
-        <tr>
-            <th> Titulo: </th>
-            <td> {{titulo}} </td>
-        </tr>
-        <tr>
-            <th> Cuerpo: </th>
-            <td> {{cuerpo}} </td>
-        </tr>
-        <tr>
-            <th> Etiquetas: </th>
-            <td> {{etiquetas}} </td>
-        </tr>
-        <tr>
-            <th> Fecha: </th>
-            <td> {{fecha | stringToDate | date : "dd/MM/yyyy"}} </td>
-        </tr>
-    </table>
-    <div class="float-right">
-        <a type="button" class="btn btn-primary" href="#!/post/edit/{{id}}" ng-show="authStatus==200">Editar</a>
-        <button type="button" class="btn btn-outline-dark" ng-click="volver()">Volver</button>
+    <div class="row">
+        <h1 class="md-4">Vista de post</h1>
+        <table class="table table-bordered table-hover" ng-show="!fallo">
+            <tr>
+                <th> Campo </th>
+                <th> Valor </th>
+            </tr>
+            <tr>
+                <th> Id: </th>
+                <td> {{id}} </td>
+            </tr>
+            <tr>
+                <th> Titulo: </th>
+                <td> {{titulo}} </td>
+            </tr>
+            <tr>
+                <th> Cuerpo: </th>
+                <td> {{cuerpo}} </td>
+            </tr>
+            <tr>
+                <th> Etiquetas: </th>
+                <td> {{etiquetas}} </td>
+            </tr>
+            <tr>
+                <th> Fecha: </th>
+                <td> {{fecha | stringToDate | date : "dd/MM/yyyy"}} </td>
+            </tr>
+        </table>
+        <div class="col">
+            <div class="float-right">
+                <a type="button" class="btn btn-primary" href="#!/post/edit/{{id}}" ng-show="authStatus==200">Editar</a>
+                <button type="button" class="btn btn-outline-dark" ng-click="volver()">Volver</button>
+            </div>
+        </div>
     </div>
-
 </div>
+<ng-include src="'./app/footer.html'"></ng-include>
