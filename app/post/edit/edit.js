@@ -1,7 +1,7 @@
 var miControlador = miModulo.controller(
     "postEditController",
-    ['$scope', '$http', '$routeParams', '$window', '$location', 'promesasService', 'auth',
-        function ($scope, $http, $routeParams, $window, $location, promesasService, auth) {
+    ['$scope', '$http', '$routeParams', '$window', '$location', 'promesasService', 'auth', '$filter',
+        function ($scope, $http, $routeParams, $window, $location, promesasService, auth, $filter) {
             $scope.authStatus = auth.data.status;
             $scope.authUsername = auth.data.message;
             if ($scope.authStatus != 200) {
@@ -25,7 +25,7 @@ var miControlador = miModulo.controller(
                     $scope.titulo = response.data.message.titulo;
                     $scope.cuerpo = response.data.message.cuerpo;
                     $scope.etiquetas = response.data.message.etiquetas;
-                    $scope.fecha =  $filter('date')(Date.parse(response.data.message.fecha), 'dd/MM/yyyy');
+                    $scope.fecha = moment(response.data.message.fecha, 'DD/MM/YYYY HH:mm').toDate();
                 }, function (error) {
                     $scope.fallo = true;
                 });
