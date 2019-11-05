@@ -7,11 +7,11 @@
             <th> Valor </th>
         </tr>
         <tr>
-            <td> Id: </td>
+            <th> Id: </th>
             <td> {{id}} </td>
         </tr>
         <tr>
-            <td> Titulo: </td>
+            <th> Titulo: </th>
             <td> {{titulo}} </td>
         </tr>
         <tr>
@@ -28,6 +28,8 @@
         </tr>
     </table>
     <div class="float-right">
+        <a type="button" class="btn btn-primary" href="#!/post/edit/{{id}}" ng-show="authStatus==200">Editar</a>
         <button type="button" class="btn btn-outline-dark" ng-click="volver()">Volver</button>
     </div>
+
 </div>
