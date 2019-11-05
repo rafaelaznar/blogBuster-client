@@ -24,7 +24,7 @@
         </tr>
         <tr>
             <th> Fecha: </th>
-            <td> {{fecha}} </td>
+            <td> {{fecha | stringToDate | date : "dd/MM/yyyy"}} </td>
         </tr>
     </table>
     <div class="float-right">

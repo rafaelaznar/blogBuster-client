@@ -14,7 +14,7 @@ var miControlador = miModulo.controller(
             $scope.hecho = false;
             $scope.falloMensaje = "";
             //--
-            $scope.modificar = function () {
+            $scope.guardar = function () {
                 const datos = {
                     id: $routeParams.id,
                     titulo: $scope.titulo,

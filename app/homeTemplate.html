@@ -13,9 +13,10 @@
           <div class="card-header">
             <h3>
               <a href="#!/post/view/{{post.id}}">
-                <span class="font-weight-bold">{{post.titulo}}</span>
-              </a>
+                <span class="font-weight-bold">{{post.titulo}}</span>                
+              </a>              
             </h3>
+            <h6 class="float-right text-muted" ng-show="post.fecha">Fecha: {{post.fecha | stringToDate | date : "dd/MM/yyyy"}}</h6>
           </div>
           <div class="card-body">
             <p class="card-text">{{post.cuerpo}}</p>
