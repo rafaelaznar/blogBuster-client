@@ -49,15 +49,12 @@
         <label for="fecha" class="col-sm-2 col-form-label">Fecha:</label>
         <div class="col-sm-10">
 
-            <md-datepicker ng-model="fecha" md-placeholder="Enter date"></md-datepicker>
+          
+          <md-datepicker ng-model="fecha" md-placeholder="Enter date" 
+          ng-class="{ 'is-invalid' : !userForm.fecha.$valid && !userForm.fecha.$pristine}" name="fecha"
+            ng-required="true"></md-datepicker>
 
-          <input type="text" ng-model="fecha" class="form-control"
-            ng-class="{ 'is-invalid' : !userForm.fecha.$valid && !userForm.fecha.$pristine}" name="fecha"
-            ng-required="true" value="{{post.fecha}}" />
-            
-          <div class="invalid-feedback" ng-show="userForm.fecha.$error.pattern">
-            El operando introducido es incorrecto, sólo debe llevar números
-          </div>
+
         </div>
       </div>
       <br>
@@ -69,7 +66,7 @@
       <div class="alert alert-success text-center" role="alert">
         <h2>El Post se ha actualizado con éxito</h2>
         <button class="btn btn-primary" ng-click="cerrar()">Cerrar</button>
-        <button class="btn btn-primary" ng-click="volver()">Volver</button>        
+        <button class="btn btn-primary" ng-click="volver()">Volver</button>
       </div>
     </div>
     <div ng-show="fallo&&hecho">
@@ -77,7 +74,7 @@
         <h2>Ha ocurrido un error al actualizar el Post</h2>
         <p ng-show="falloMensaje!=''">{{falloMensaje}}</p>
         <button class="btn btn-primary" ng-click="cerrar()">Cerrar</button>
-        <button class="btn btn-primary" ng-click="volver()">Volver</button>        
+        <button class="btn btn-primary" ng-click="volver()">Volver</button>
       </div>
     </div>
     <div ng-show="fallo&&!hecho">
@@ -85,7 +82,7 @@
         <h2>Ha habido un error al recibir datos del Post desde el servidor</h2>
         <p ng-show="falloMensaje!=''">{{falloMensaje}}</p>
         <button class="btn btn-primary" ng-click="cerrar()">Cerrar</button>
-        <button class="btn btn-primary" ng-click="volver()">Volver</button>        
+        <button class="btn btn-primary" ng-click="volver()">Volver</button>
       </div>
     </div>
   </div>

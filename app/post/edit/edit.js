@@ -8,6 +8,9 @@ var miControlador = miModulo.controller(
                 $location.path('/login');
             }
             //--
+            $scope.fecha = new Date();
+            //$scope.isOpen = false;
+            //--
             $scope.id = $routeParams.id;
             //--
             $scope.controller = "postEditController";
@@ -22,7 +25,7 @@ var miControlador = miModulo.controller(
                     $scope.titulo = response.data.message.titulo;
                     $scope.cuerpo = response.data.message.cuerpo;
                     $scope.etiquetas = response.data.message.etiquetas;
-                    $scope.fecha = response.data.message.fecha;
+                    $scope.fecha =  $filter('date')(Date.parse(response.data.message.fecha), 'dd/MM/yyyy');
                 }, function (error) {
                     $scope.fallo = true;
                 });
